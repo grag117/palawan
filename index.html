@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Palawan, a tropical paradise in the Philippines. Explore islands, tour packages, travel tips, and booking inquiries.">
+  <title>Palawan: Tropical Paradise</title>
+  <style>
+    :root {
+      --navy: #063b4c;
+      --teal: #087e8b;
+      --aqua: #b9f0e8;
+      --sand: #fff4df;
+      --coral: #ff805f;
+      --ink: #18343c;
+      --white: #fff;
+      --muted: #5d7277;
+      --shadow: 0 12px 32px rgba(6,59,76,.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); line-height: 1.65; background: #fbfdfc; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1120px, 92%); margin: auto; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); box-shadow: 0 2px 14px rgba(0,0,0,.07); backdrop-filter: blur(12px); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { font-size: 1.15rem; font-weight: 800; color: var(--navy); letter-spacing: -.4px; }
+    .brand span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 17px; list-style: none; flex-wrap: wrap; }
+    .nav-links a { font-size: .88rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--teal); }
+    .menu-toggle { display: none; border: 0; background: var(--navy); color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem; }
+    .hero { min-height: 620px; display: grid; place-items: center; color: white; text-align: center; background: linear-gradient(110deg, rgba(2,36,50,.68), rgba(2,55,67,.18)), url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=2000&q=85') center/cover; }
+    .hero-content { max-width: 850px; padding: 85px 0; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 3px; font-size: .78rem; font-weight: 800; color: var(--coral); }
+    .hero .eyebrow { color: #ffe2a7; }
+    h1 { font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: 1.04; margin: 16px 0 20px; letter-spacing: -2px; }
+    .hero p { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 680px; margin: 0 auto 28px; }
+    .btn { display: inline-block; border: 0; cursor: pointer; border-radius: 999px; padding: 12px 22px; font-weight: 800; font-size: .95rem; transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--coral); }
+    .btn-primary:hover { background: #ed6849; }
+    .btn-light { background: white; color: var(--navy); margin-left: 8px; }
+    section { padding: 82px 0; }
+    .section-head { text-align: center; max-width: 740px; margin: 0 auto 38px; }
+    .section-head h2 { color: var(--navy); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin: 8px 0 12px; }
+    .section-head p { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; align-items: center; }
+    .about-image { width: 100%; height: 390px; object-fit: cover; border-radius: 24px; box-shadow: var(--shadow); }
+    .about-copy h2 { color: var(--navy); font-size: 2.25rem; line-height: 1.15; margin: 10px 0 18px; }
+    .about-copy p { margin-bottom: 14px; color: var(--muted); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .pill { background: var(--aqua); color: var(--navy); border-radius: 99px; padding: 7px 12px; font-size: .82rem; font-weight: 800; }
+    .soft { background: #eff9f7; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .card img { height: 220px; width: 100%; object-fit: cover; }
+    .card-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .card h3 { color: var(--navy); font-size: 1.25rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: .94rem; margin-bottom: 13px; }
+    .card .btn { align-self: flex-start; margin-top: auto; }
+    .price { font-size: 1.25rem; font-weight: 900; color: var(--teal); margin: 4px 0 14px; }
+    .note { font-size: .82rem; color: var(--muted); margin-top: 18px; text-align: center; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .gallery-grid figure { position: relative; overflow: hidden; border-radius: 14px; min-height: 190px; }
+    .gallery-grid img { width: 100%; height: 100%; min-height: 190px; object-fit: cover; transition: transform .3s; }
+    .gallery-grid figure:hover img { transform: scale(1.06); }
+    .gallery-grid figcaption { position: absolute; inset: auto 0 0; color: white; padding: 35px 12px 12px; font-weight: 800; background: linear-gradient(transparent, rgba(0,0,0,.72)); }
+    .travel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .travel-tip { background: white; padding: 23px; border-radius: 16px; border: 1px solid #e1efec; }
+    .travel-tip .emoji { font-size: 1.8rem; }
+    .travel-tip h3 { color: var(--navy); margin: 7px 0; }
+    .travel-tip p, .travel-tip li { color: var(--muted); font-size: .94rem; }
+    .travel-tip ul { padding-left: 20px; }
+    .booking-wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 32px; align-items: start; }
+    .booking-info { background: var(--navy); color: white; padding: 30px; border-radius: 22px; }
+    .booking-info h3 { font-size: 1.7rem; margin: 8px 0 12px; }
+    .booking-info p { color: #d9ebee; margin-bottom: 14px; }
+    .booking-info .small { font-size: .85rem; color: #b9d5db; margin-top: 22px; }
+    form { background: white; padding: 28px; border-radius: 22px; box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    label { font-weight: 800; font-size: .88rem; }
+    input, select, textarea { width: 100%; border: 1px solid #c9dbd9; border-radius: 10px; padding: 12px; font: inherit; color: var(--ink); background: #fff; }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--teal); border-color: transparent; }
+    textarea { resize: vertical; min-height: 105px; }
+    .form-help { color: var(--muted); font-size: .82rem; margin-top: 12px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: center; }
+    .contact-item { padding: 25px 15px; background: white; border-radius: 16px; box-shadow: var(--shadow); overflow-wrap: anywhere; }
+    .contact-item .emoji { font-size: 1.8rem; }
+    .contact-item h3 { color: var(--navy); margin: 7px 0; }
+    .contact-item p { color: var(--muted); }
+    .faq { max-width: 800px; margin: 30px auto 0; }
+    details { background: white; border: 1px solid #dcebe8; border-radius: 12px; padding: 15px 18px; margin-bottom: 10px; }
+    summary { cursor: pointer; font-weight: 800; color: var(--navy); }
+    details p { color: var(--muted); margin-top: 10px; }
+    footer { background: #032e3c; color: #e3f1f2; padding: 32px 0; text-align: center; }
+    footer p { font-size: .9rem; margin: 5px 0; }
+    footer a { text-decoration: underline; }
+    .toast { display: none; padding: 14px; border-radius: 10px; background: #e3f8ed; color: #145b36; margin-bottom: 14px; font-weight: 700; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: .8rem; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .booking-wrap { grid-template-columns: 1fr; }
+      .travel-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 650px) {
+      .nav { min-height: 65px; }
+      .menu-toggle { display: inline-block; }
+      .nav-links { display: none; position: absolute; top: 65px; left: 0; right: 0; background: white; padding: 18px 5%; box-shadow: 0 10px 15px rgba(0,0,0,.1); flex-direction: column; align-items: stretch; }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 7px 0; font-size: .95rem; }
+      .hero { min-height: 550px; }
+      h1 { letter-spacing: -1px; }
+      section { padding: 60px 0; }
+      .cards, .travel-grid, .contact-grid, .form-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .gallery-grid figure, .gallery-grid img { min-height: 145px; }
+      .about-image { height: 280px; }
+      .btn-light { margin: 10px 0 0; }
+      form, .booking-info { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">PALAWAN <span>🌴</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰ Menu</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#guide">Travel Guide</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content container">
+        <p class="eyebrow">Your island adventure begins here</p>
+        <h1>Palawan: Tropical Paradise</h1>
+        <p>Discover turquoise waters, dramatic limestone cliffs, hidden lagoons, and unforgettable island adventures in one of the Philippines' most beautiful destinations.</p>
+        <a class="btn btn-primary" href="#destinations">Explore Palawan</a>
+        <a class="btn btn-light" href="#booking">Plan Your Trip</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <img class="about-image" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=1200&q=85" alt="Tropical coastal scenery in the Philippines" loading="lazy">
+        <div class="about-copy">
+          <p class="eyebrow">About the destination</p>
+          <h2>Welcome to Palawan</h2>
+          <p>Palawan is a province in the western Philippines known for its islands, clear seas, limestone landscapes, rich marine life, and welcoming communities. It offers opportunities for island hopping, snorkeling, kayaking, nature trips, and cultural experiences.</p>
+          <p><strong>Our mission:</strong> To inspire responsible travel by sharing useful destination information and encouraging visitors to respect Palawan's natural and cultural heritage.</p>
+          <p><strong>Our vision:</strong> To help travelers discover Palawan through memorable, safe, and environmentally mindful experiences.</p>
+          <p>This educational tourism website is designed for students, families, couples, and adventure seekers planning a visit.</p>
+          <div class="pill-row"><span class="pill">Island Hopping</span><span class="pill">Nature</span><span class="pill">Adventure</span><span class="pill">Responsible Travel</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="destinations">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Places to explore</p>
+          <h2>Discover Palawan's Highlights</h2>
+          <p>Explore iconic lagoons, beautiful islands, and remarkable natural attractions. Check local rules and conditions before traveling.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80" alt="Island scenery and blue sea" loading="lazy">
+            <div class="card-body"><h3>El Nido</h3><p>Famous for limestone cliffs, lagoons, beaches, kayaking, and island-hopping excursions.</p><a class="btn btn-primary" href="#booking" data-package="El Nido Island Escape">Ask About This Trip</a></div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80" alt="Waves and tropical ocean" loading="lazy">
+            <div class="card-body"><h3>Coron</h3><p>Known for scenic island views, snorkeling areas, shipwreck dive sites, and clear lakes.</p><a class="btn btn-primary" href="#booking" data-package="Coron Island Adventure">Ask About This Trip</a></div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80" alt="Green tropical river landscape" loading="lazy">
+            <div class="card-body"><h3>Puerto Princesa</h3><p>A convenient gateway to Palawan and home to the celebrated Underground River area.</p><a class="btn btn-primary" href="#booking" data-package="Puerto Princesa Nature Tour">Ask About This Trip</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Plan your getaway</p>
+          <h2>Sample Tour Packages</h2>
+          <p>These are sample academic-project estimates, not live offers. Actual rates depend on the operator, season, group size, and inclusions.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Sunny beach with turquoise water" loading="lazy">
+            <div class="card-body"><h3>Island Escape</h3><p><strong>Duration:</strong> 1 day</p><p>Sample island-hopping experience, beach stops, and scenic photo opportunities.</p><p><strong>Sample inclusions:</strong> Guided group activity and boat transfer, subject to operator confirmation.</p><div class="price">₱2,500 / person</div><a class="btn btn-primary" href="#booking" data-package="Island Escape">Inquire Now</a></div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Dramatic natural mountain scenery" loading="lazy">
+            <div class="card-body"><h3>Nature Explorer</h3><p><strong>Duration:</strong> 2 days / 1 night</p><p>A sample short getaway with nature sightseeing and time to explore the local area.</p><p><strong>Sample inclusions:</strong> Suggested itinerary and one night of accommodation, subject to confirmation.</p><div class="price">₱5,900 / person</div><a class="btn btn-primary" href="#booking" data-package="Nature Explorer">Inquire Now</a></div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=80" alt="Tropical travel destination" loading="lazy">
+            <div class="card-body"><h3>Palawan Discovery</h3><p><strong>Duration:</strong> 3 days / 2 nights</p><p>A sample multi-day trip combining sightseeing, coastal activities, and free time.</p><p><strong>Sample inclusions:</strong> Suggested itinerary and accommodation estimate; transport and meals must be confirmed.</p><div class="price">₱8,500 / person</div><a class="btn btn-primary" href="#booking" data-package="Palawan Discovery">Inquire Now</a></div>
+          </article>
+        </div>
+        <p class="note">Sample prices are for school-project demonstration only. Confirm actual rates, permits, entrance fees, transport, meals, and exclusions with authorized providers before booking.</p>
+      </div>
+    </section>
+
+    <section class="soft" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">A glimpse of paradise</p>
+          <h2>Palawan Photo Gallery</h2>
+          <p>Explore tropical scenery and imagine your next island adventure.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="White sand and tropical sea" loading="lazy"><figcaption>Sunny Shores</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=700&q=80" alt="Island surrounded by clear water" loading="lazy"><figcaption>Island Views</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=80" alt="Ocean waves" loading="lazy"><figcaption>Blue Waters</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80" alt="Lush green nature" loading="lazy"><figcaption>Green Escapes</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=700&q=80" alt="Scenic tropical travel view" loading="lazy"><figcaption>Nature's Beauty</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" alt="Majestic mountain landscape" loading="lazy"><figcaption>Rocky Landscapes</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80" alt="Boat on a scenic lake" loading="lazy"><figcaption>Water Adventures</figcaption></figure>
+          <figure><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=80" alt="Sunlight over natural scenery" loading="lazy"><figcaption>Peaceful Moments</figcaption></figure>
+        </div>
+        <p class="note">Images are loaded from Unsplash and are illustrative; they may not all depict the exact locations named. Check image licenses and credits before final academic submission.</p>
+      </div>
+    </section>
+
+    <section id="guide">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Travel smart</p>
+          <h2>Your Palawan Travel Guide</h2>
+          <p>A few reminders to help make your visit comfortable, safe, and respectful of the environment.</p>
+        </div>
+        <div class="travel-grid">
+          <article class="travel-tip"><div class="emoji">☀️</div><h3>Best Time to Visit</h3><p>Many travelers prefer the drier months, often around November to May. Weather can change, so check forecasts and sea conditions before departure.</p></article>
+          <article class="travel-tip"><div class="emoji">🧴</div><h3>What to Bring</h3><ul><li>Light clothing and swimwear</li><li>Sun protection and reusable water bottle</li><li>Waterproof bag and personal medication</li><li>Cash and valid identification</li></ul></article>
+          <article class="travel-tip"><div class="emoji">🚐</div><h3>Getting There</h3><p>Travelers commonly fly to Puerto Princesa, El Nido, or Busuanga (for Coron), depending on the itinerary. Routes and schedules vary; verify them with transport providers.</p></article>
+          <article class="travel-tip"><div class="emoji">🐠</div><h3>Protect Nature</h3><p>Never touch or stand on coral, avoid feeding wildlife, take all rubbish with you, and follow local marine sanctuary rules.</p></article>
+          <article class="travel-tip"><div class="emoji">🛟</div><h3>Safety First</h3><p>Follow guides and lifeguards, wear a life jacket when required, check weather advisories, and avoid swimming in restricted areas.</p></article>
+          <article class="travel-tip"><div class="emoji">💰</div><h3>Budget Planning</h3><p>Budget separately for airfare, accommodation, food, local transport, tours, entrance fees, and emergency funds. Request current quotations before travel.</p></article>
+        </div>
+        <div class="faq">
+          <div class="section-head" style="margin:34px auto 20px"><h2 style="font-size:1.8rem">Frequently Asked Questions</h2></div>
+          <details><summary>Do I need to book tours in advance?</summary><p>Advance booking can help during busy periods. Confirm the operator's credentials, inclusions, cancellation terms, and current local requirements.</p></details>
+          <details><summary>Are tour package prices final?</summary><p>No. The prices shown here are sample estimates for an academic project and are not live quotations.</p></details>
+          <details><summary>What if the weather is bad?</summary><p>Follow official advisories and the guidance of local authorities or tour operators. Boat trips may be delayed or cancelled for safety.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="booking">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Let's plan your trip</p>
+          <h2>Booking & Inquiry</h2>
+          <p>Send a sample inquiry using the form below. This demo does not process payments or send information to a real travel agency.</p>
+        </div>
+        <div class="booking-wrap">
+          <aside class="booking-info">
+            <p class="eyebrow">Your next adventure</p>
+            <h3>Start Your Palawan Journey</h3>
+            <p>Tell us your preferred package, travel dates, and group size. We'll help you organize your travel plan for this website demonstration.</p>
+            <p>✉️ Email: palawantropicalparadise@example.com</p>
+            <p>📍 Destination: Palawan, Philippines</p>
+            <p class="small">Academic project demonstration only. This is not a real booking agency. No payment details or sensitive personal information are requested.</p>
+          </aside>
+          <form id="bookingForm">
+            <div id="formMessage" class="toast" role="status" aria-live="polite"></div>
+            <div class="form-grid">
+              <div class="field"><label for="fullName">Full name *</label><input id="fullName" name="fullName" autocomplete="name" required maxlength="80" placeholder="Enter your name"></div>
+              <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com"></div>
+              <div class="field"><label for="package">Preferred package *</label><select id="package" name="package" required><option value="">Choose a package</option><option>Island Escape</option><option>Nature Explorer</option><option>Palawan Discovery</option><option>El Nido Island Escape</option><option>Coron Island Adventure</option><option>Puerto Princesa Nature Tour</option><option>Custom itinerary</option></select></div>
+              <div class="field"><label for="guests">Number of travelers *</label><select id="guests" name="guests" required><option value="">Select group size</option><option>1</option><option>2</option><option>3–5</option><option>6–10</option><option>11 or more</option></select></div>
+              <div class="field"><label for="date">Preferred travel date</label><input id="date" name="date" type="date"></div>
+              <div class="field"><label for="budget">Estimated budget per person</label><select id="budget" name="budget"><option value="">Choose a budget</option><option>Below ₱3,000</option><option>₱3,000–₱6,000</option><option>₱6,000–₱10,000</option><option>Above ₱10,000</option><option>Not sure yet</option></select></div>
+            </div>
+            <div class="field"><label for="message">Questions or special requests</label><textarea id="message" name="message" maxlength="1000" placeholder="Tell us about your travel plans (optional)"></textarea></div>
+            <button class="btn btn-primary" type="submit">Submit Sample Inquiry</button>
+            <p class="form-help">Fields marked * are required. This demo form only displays a confirmation on this device; it does not send or save your details.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">We'd love to hear from you</p>
+          <h2>Contact Us</h2>
+          <p>Use these sample contact details for the academic website, and replace them with verified details if your instructor requires it.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item"><div class="emoji">✉️</div><h3>Email</h3><p><a href="mailto:palawantropicalparadise@example.com">palawantropicalparadise@example.com</a></p></div>
+          <div class="contact-item"><div class="emoji">📍</div><h3>Location</h3><p>Palawan, Philippines</p></div>
+          <div class="contact-item"><div class="emoji">🌐</div><h3>Explore More</h3><p><a href="https://philippines.travel/" target="_blank" rel="noopener noreferrer">Philippines Travel official tourism site</a></p></div>
+        </div>
+        <div style="text-align:center;margin-top:28px">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/Palawan+Philippines/" target="_blank" rel="noopener noreferrer">View Palawan on Google Maps ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Palawan: Tropical Paradise</strong> 🌴</p>
+      <p>Discover the Beauty. Experience the Adventure.</p>
+      <p><a href="#home">Home</a> · <a href="#destinations">Destinations</a> · <a href="#packages">Packages</a> · <a href="#booking">Inquiry</a> · <a href="#contact">Contact</a></p>
+      <p>© <span id="year"></span> Palawan: Tropical Paradise — Student Tourism Website Project.</p>
+      <p>Privacy note: The demo inquiry form does not transmit or store submitted details.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕ Close' : '☰ Menu';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰ Menu';
+      });
+    });
+
+    document.querySelectorAll('[data-package]').forEach(button => {
+      button.addEventListener('click', () => {
+        const packageSelect = document.getElementById('package');
+        packageSelect.value = button.dataset.package;
+      });
+    });
+
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+    dateInput.min = localToday;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('bookingForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const formMessage = document.getElementById('formMessage');
+      formMessage.textContent = 'Thank you, ' + document.getElementById('fullName').value.trim() + '! Your sample inquiry was completed on this device. No booking was sent to a real provider.';
+      formMessage.style.display = 'block';
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      form.reset();
+      dateInput.min = localToday;
+    });
+  </script>
+</body>
+</html>
